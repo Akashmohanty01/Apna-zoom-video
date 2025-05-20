@@ -20,6 +20,8 @@ app.use(express.urlencoded({limit: "40kb", extended: true}));
 app.use('/api/v1/users', userRoutes);
 
 const start = async () => {
+    console.log('Connecting to MongoDB with URI:', process.env.MONGO_URI);
+
     const connectionDB = await mongoose.connect(process.env.MONGO_URI);
     console.log(`MonogoDB Connected host: ${connectionDB.connection.host}`);
     server.listen(PORT, () => {
